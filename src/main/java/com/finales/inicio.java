@@ -12,7 +12,7 @@ import java.util.stream.Stream;
 public class inicio {
 	@SuppressWarnings("null")
 	public static void main(String[] args) {		
-	
+		    String filePath1="C:\\Users\\Usuario\\eclipse-workspace\\finales\\src\\main\\java\\com\\finales\\pronostico.csv";
 			String filePath ="C:\\Users\\Usuario\\eclipse-workspace\\finales\\src\\main\\java\\com\\finales\\resultados.csv";
 			List<Participante> participantes= new ArrayList<>();
 			List<Partido> partidos = new ArrayList<>(); 
@@ -46,6 +46,7 @@ public class inicio {
 					  for (int i = 0; i < arregloDeEnteros.length; i++) {
 						   if(arregloDeEnteros[i]==arregloDeEnteros2[i]) {
 							  System.out.println("empate"); 
+							  
 						   } else if (arregloDeEnteros[i]>arregloDeEnteros2[i]){
 							   System.out.println("local"); 
 						   } else {
@@ -57,13 +58,24 @@ public class inicio {
 			 } catch (IOException io) {
 					System.err.println("error"+ io.getMessage());
 				}	
+			
+			try (Stream<String> streanfile = Files.lines(Paths.get(filePath1))) {				
+				
+				   participantes = streanfile.map(linea -> linea.split(";")).map(arreglo-> {					
+					Participante part=new Participante(arreglo[0], filePath1);
+					System.out.println("pronostico: " +arreglo[6]);
 					
+				
+					
+				   }).collect(Collectors.toList());	
+					
+				   } catch (IOException io) {
+				System.err.println("error"+ io.getMessage());
+			}		
+			  
+					  
 			
 			}
-
-	
-
-	
 			
 	}
 
