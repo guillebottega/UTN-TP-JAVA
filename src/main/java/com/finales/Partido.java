@@ -1,6 +1,7 @@
 package com.finales;
 public class Partido {
     private equipo equipo1;
+    
     public equipo getEquipo1() {
 		return equipo1;
 	}
